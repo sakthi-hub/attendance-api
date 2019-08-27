@@ -25,11 +25,26 @@ module.exports.emp_details_add = function(req, res) {
 
   });
 });
-
-return false;
-
-
-  
-
 };
+
+
+module.exports.emp_details_get = function(req, res) {
+
+    Emp_detail.find(function (err, emps){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(emps);
+    }
+  });
+};
+
+
+
+
+// module.exports.emp_details_edit = function(req, res) {
+
+//   console.log("test");
+// };
 
