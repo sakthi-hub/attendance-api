@@ -60,3 +60,25 @@ module.exports.emp_details_delete = function(req, res) {
 };
 
 
+module.exports.emp_details_update = function(req, res) {
+
+  var emp_detail = new Emp_detail();
+
+     Emp_detail.findById(req.body.id, function(err ,emps) {
+    if (!emps)
+res.send("Could not load Document")
+    else {
+    Emp_detail.update({'_id':req.body.id}, 
+    { $set: {'user_name': req.body.user_name, 'email': req.body.email, 'phone_number': req.body.phone_number } }, function(err, result) { 
+        if (err) {
+      res.send(err) // Pass errors to Express.
+    } else {
+      res.send("data updated successfully")
+    }
+      
+    }); 
+
+    }
+  });
+
+};
