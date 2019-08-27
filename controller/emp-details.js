@@ -41,10 +41,22 @@ module.exports.emp_details_get = function(req, res) {
 };
 
 
+module.exports.emp_details_edit = function(req, res) {
+
+    let id = req.body.id;
+  Emp_detail.findById(id, function (err, emps){
+      res.json(emps);
+  });
+};
 
 
-// module.exports.emp_details_edit = function(req, res) {
+module.exports.emp_details_delete = function(req, res) {
 
-//   console.log("test");
-// };
+  Emp_detail.findByIdAndRemove({_id: req.body.id}, function(err, business){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+
+};
+
 
